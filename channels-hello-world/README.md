@@ -27,3 +27,5 @@ Step 4
 ```bash
 pipenv install selenium
 ```
+
+Pretty awesome. A well-done tutorial.
