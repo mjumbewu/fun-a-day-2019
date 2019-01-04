@@ -22,3 +22,8 @@ Step 2
 ```bash
 pipenv install channels_redis
 ```
+
+Step 4
+```bash
+pipenv install selenium
+```
