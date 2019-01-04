@@ -2,6 +2,7 @@ Following the Channels tutorial at https://channels.readthedocs.io/en/latest/tut
 
 Decided to try out `pipenv` too!
 
+Step 1
 ```bash
 venv env -p python3
 pipenv install django channels
@@ -14,4 +15,10 @@ cd chat
 
 rm admin.py apps.py models.py tests.py
 mkdir -p templates/chat
+cd ../..
+```
+
+Step 2
+```bash
+pipenv install channels_redis
 ```
