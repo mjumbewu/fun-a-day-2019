@@ -5,8 +5,14 @@ Single LED blinking "Hello, World!".
 from RPi import GPIO
 import time
 
+# I'm going to be using the Adafruit All About LEDs guide for this:
+# https://learn.adafruit.com/all-about-leds
+
+GPIO.setmode(GPIO.BOARD)
+
+# Also, always handy is https://pinout.xyz/
 outpin = 11
-GPIO.setup(outpin, GPIO.OUTPUT)
+GPIO.setup(outpin, GPIO.OUT)
 
 # I already know enough about Raspbery Pi GPIO programming to understand the
 # mechanics behind blinking a light, so this is a little spin on "Hello, World".
@@ -61,12 +67,12 @@ code = {
 
 def lighton():
     """ Turn a light on """
-    print(f'\r.', end='')
+    print('\r.', end='')
     GPIO.output(outpin, GPIO.HIGH)
 
 def lightoff():
     """ Turn a light off """
-    print(f'\r ', end='')
+    print('\r ', end='')
     GPIO.output(outpin, GPIO.LOW)
 
 def wait(d):
@@ -99,7 +105,7 @@ def pulse_pattern(pattern, unit=0.3):
         elif s == '-':
             wait(3 * unit)
         else:
-            raise ValueError(f'Unrecognized symbol in {pattern!r}: {s!r}')
+            raise ValueError('Unrecognized symbol in {pattern!r}: {s!r}'.format(**locals()))
         lightoff()
 
 
