@@ -5,11 +5,6 @@ A "simple" (who am I kidding; I don't know how simple it might be) fading LED.
 from RPi import GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)
-
-outpin = 33
-GPIO.setup(outpin, GPIO.OUT)
-
 
 def about_equal(x, y, threshold=0.001):
     return (y - threshold) >= x >= (y + threshold)
@@ -36,10 +31,17 @@ def fade(pwm, start_dc, end_dc, duration, interval=0.05):
 
 
 if __name__ == '__main__':
+    GPIO.setmode(GPIO.BOARD)
+
+    outpin = 33
+    GPIO.setup(outpin, GPIO.OUT)
     pwm = GPIO.PWM(outpin, 100)
+
     pwm.start(0)
     fade(pwm, 0, 100, 1)
     fade(pwm, 100, 0, 2)
     fade(pwm, 0, 100, 1)
     fade(pwm, 100, 0, 2)
     pwm.stop()
+
+    GPIO.cleanup()

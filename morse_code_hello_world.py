@@ -140,3 +140,4 @@ def pulse_message(msg, unit=0.3):
 
 if __name__ == '__main__':
     pulse_message('hello, world!')
+    GPIO.cleanup()
