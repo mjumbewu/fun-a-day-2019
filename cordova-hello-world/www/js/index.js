@@ -28,6 +28,14 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        cordova.plugins.backgroundMode.enable();
+
+        document.querySelector('#thebutton').addEventListener('click', this.onButtonClick.bind(this))
+    },
+
+    onButtonClick: function() {
+      alert('Going to the background!')
+      cordova.plugins.backgroundMode.moveToBackground();
     },
 
     // Update DOM on a Received Event

@@ -35,3 +35,15 @@ cordova platform add android
 
 Overall, it was a pain in the kiester to get this running. I'm still not sure I
 have the emulator configured correctly.
+
+For the future, these two packages might be useful:
+* https://github.com/katzer/cordova-plugin-background-mode
+* https://github.com/vilic/cordova-plugin-tts
+
+
+Background Process
+==================
+
+```bash
+cordova plugin add cordova-plugin-background-mode
+```
