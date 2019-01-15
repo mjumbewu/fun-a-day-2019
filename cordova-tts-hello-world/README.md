@@ -47,3 +47,11 @@ Background Process
 ```bash
 cordova plugin add cordova-plugin-background-mode
 ```
+
+
+TTS
+===
+
+```bash
+cordova plugin add cordova-plugin-tts
+```
