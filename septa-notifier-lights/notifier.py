@@ -10,14 +10,14 @@ def load_route_config(route):
         'stop_coord': [-75.163861,39.926073],
         'direction': 'NorthBound',
         'thresholds': [
-            0.012041569042285299,  # State 4
-            0.009924757175874788,  # State 3
-            # 0.008893667972218605,
-            0.0076096783112062135,  # State 2
-            # 0.0063416787209699945,
-            0.005056295580758721,  # State 1
-            # 0.0037998697346114914,
-            0.0025383224775481017,  # State 0
+            0.012041569042285299,
+            0.009924757175874788,
+            0.008893667972218605,
+            0.0076096783112062135,
+            0.0063416787209699945,
+            0.005056295580758721,
+            0.0037998697346114914,
+            0.0025383224775481017,
         ]
     }
 
@@ -78,7 +78,7 @@ def transition_state(state, new_state):
     pass
 
 
-def light_notification_loop(init_state, queue):
+def notification_loop(init_state, queue):
     state = init_state
     new_state = state
     while True:
@@ -104,7 +104,7 @@ if __name__ == '__main__':
     from queue import Queue
     from threading import Thread
     q = Queue()
-    thread = Thread(target=light_notification_loop, args=(None, q))
+    thread = Thread(target=notification_loop, args=(None, q))
     thread.start()
 
     # Enter the listening loop
