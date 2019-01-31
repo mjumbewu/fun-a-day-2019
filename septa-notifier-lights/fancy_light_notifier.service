@@ -1,0 +1,10 @@
+[Unit]
+Description=Fancy Light Notifier
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/fun-a-day-2019/septa-notifier-lights/fancy_light_notifier.py
+
+[Install]
+WantedBy=multi-user.target
