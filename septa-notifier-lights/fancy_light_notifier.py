@@ -137,6 +137,7 @@ def fadeMulti(pwms, start_dcs, end_dcs, duration, interval=0.05):
     fadesteppers = \
         [fadestepper(pwm, start_dc, end_dc, 0.5) for pwm, start_dc, end_dc in zip(pwms, start_dcs, end_dcs)]
 
+    i = 0
     while True:
         complete_fades = 0
         for fs in fadesteppers:
@@ -150,6 +151,9 @@ def fadeMulti(pwms, start_dcs, end_dcs, duration, interval=0.05):
         # If we did not break out of the inner for loop go around and repeat
         # the loop again.
         else:
+            i += 1
+            elapsed = i * interval
+            time.sleep(min(interval, duration - elapsed))
             continue
 
         # If we did break the inner for loop then we are done looping. Go ahead
