@@ -8,11 +8,13 @@ import time
 # I'm going to be using the Adafruit All About LEDs guide for this:
 # https://learn.adafruit.com/all-about-leds
 
-GPIO.setmode(GPIO.BOARD)
+if __name__ == '__main__':
+    GPIO.setmode(GPIO.BOARD)
 
 # Also, always handy is https://pinout.xyz/
-outpin = 11
-GPIO.setup(outpin, GPIO.OUT)
+if __name__ == '__main__':
+    outpin = 11
+    GPIO.setup(outpin, GPIO.OUT)
 
 # I already know enough about Raspbery Pi GPIO programming to understand the
 # mechanics behind blinking a light, so this is a little spin on "Hello, World".
@@ -65,15 +67,15 @@ code = {
 
 # To pulse a code, we need a few pieces of basic functionality:
 
-def lighton():
+def lighton(pin):
     """ Turn a light on """
     print('\r.', end='')
-    GPIO.output(outpin, GPIO.HIGH)
+    GPIO.output(pin, GPIO.HIGH)
 
-def lightoff():
+def lightoff(pin):
     """ Turn a light off """
     print('\r ', end='')
-    GPIO.output(outpin, GPIO.LOW)
+    GPIO.output(pin, GPIO.LOW)
 
 def wait(d):
     """ Pause a certain amount of time """
@@ -84,7 +86,7 @@ def wait(d):
 
 # Using these basic functions, we build up more complex forms:
 
-def pulse_pattern(pattern, unit=0.3):
+def pulse_pattern(pin, pattern, unit=0.3):
     """ Given a specific pattern of dots and dashes, blink appropriately. """
 
     inpattern = False
@@ -99,17 +101,17 @@ def pulse_pattern(pattern, unit=0.3):
 
         # Blinking is simple. For a dot, turn the light on for 1 unit of time.
         # For a dash, turn on for three units.
-        lighton()
+        lighton(pin)
         if s == '.':
             wait(1 * unit)
         elif s == '-':
             wait(3 * unit)
         else:
             raise ValueError('Unrecognized symbol in {pattern!r}: {s!r}'.format(**locals()))
-        lightoff()
+        lightoff(pin)
 
 
-def pulse_message(msg, unit=0.3):
+def pulse_message(pin, msg, unit=0.3):
     """ Given a message, blink appropriately. """
 
     inword = False
@@ -135,9 +137,9 @@ def pulse_message(msg, unit=0.3):
 
         # Pulse out the pattern for the character.
         pattern = code[c]
-        pulse_pattern(pattern, unit=unit)
+        pulse_pattern(pin, pattern, unit=unit)
 
 
 if __name__ == '__main__':
-    pulse_message('hello, world!')
+    pulse_message(outpin, 'hello, world!')
     GPIO.cleanup()
